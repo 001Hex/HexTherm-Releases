@@ -1,0 +1,23 @@
+name: Bug report
+description: Something looks wrong (a temperature, fan reading, alert, or crash)
+labels: [bug]
+body:
+  - type: input
+    id: mac
+    attributes: { label: Mac model and chip, placeholder: "MacBook Pro 16-inch, M4 Max" }
+    validations: { required: true }
+  - type: input
+    id: macos
+    attributes: { label: macOS version, placeholder: "26.0" }
+    validations: { required: true }
+  - type: input
+    id: version
+    attributes: { label: HexTherm version, placeholder: "1.0.0" }
+    validations: { required: true }
+  - type: textarea
+    id: what
+    attributes: { label: What happened?, description: "What did you see, and what did you expect?" }
+    validations: { required: true }
+  - type: textarea
+    id: extra
+    attributes: { label: Anything else?, description: "Screenshots help. If a temperature looks wrong, say which reading and roughly what it showed." }

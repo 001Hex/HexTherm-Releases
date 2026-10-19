@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HexTherm – Free Mac Menu Bar Temperature, Fan Speed & Heat Warning Monitor</title>
+<meta name="description" content="HexTherm is a free, lightweight Mac menu bar app that shows CPU and GPU temperature, fan speed, and warns you when your MacBook runs hot. Apple Silicon (M1–M4) and Intel. Offline, read-only, no accounts.">
+<meta name="keywords" content="mac temperature monitor, mac fan speed, menu bar temperature, cpu temperature mac, apple silicon temperature, m4 temperature monitor, macbook overheating, mac heat warning, macos 26 utility">
+<meta name="author" content="Hex Modifications">
+<meta name="theme-color" content="#0b0614">
+<link rel="canonical" href="https://001hex.github.io/HexTherm-Releases/">
+<link rel="icon" type="image/png" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HexTherm">
+<meta property="og:title" content="HexTherm – Mac temperature, fans & heat warnings in your menu bar">
+<meta property="og:description" content="Free, quiet, offline. CPU/GPU temperature, fan speed and heat alerts for your Mac. By Hex Modifications.">
+<meta property="og:url" content="https://001hex.github.io/HexTherm-Releases/">
+<meta property="og:image" content="https://001hex.github.io/HexTherm-Releases/assets/og-image.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HexTherm – Mac temperature, fans & heat warnings in your menu bar">
+<meta name="twitter:description" content="Free, quiet, offline. CPU/GPU temperature, fan speed and heat alerts for your Mac.">
+<meta name="twitter:image" content="https://001hex.github.io/HexTherm-Releases/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "HexTherm",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "macOS 26 or later",
+      "description": "A lightweight Mac menu bar app that shows CPU and GPU temperature and fan speed, with heat warnings. Free, offline and read-only.",
+      "softwareVersion": "1.0.0",
+      "downloadUrl": "https://github.com/001Hex/HexTherm-Releases/releases/latest",
+      "url": "https://001hex.github.io/HexTherm-Releases/",
+      "image": "https://001hex.github.io/HexTherm-Releases/assets/og-image.png",
+      "author": { "@type": "Organization", "name": "Hex Modifications" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is HexTherm?",
+          "acceptedAnswer": { "@type": "Answer", "text": "HexTherm is a small, free macOS menu bar app that shows your Mac's CPU and GPU temperature and fan speeds, and warns you when it runs hot." } },
+        { "@type": "Question", "name": "Does HexTherm work on Apple Silicon (M1, M2, M3, M4) and Intel Macs?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is a universal app and discovers your Mac's sensors at launch instead of using a fixed list. It was developed and tested on an M4 Max MacBook Pro; if a sensor looks wrong on your model, please open an issue." } },
+        { "@type": "Question", "name": "Can HexTherm control my fan speed?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. HexTherm is read-only by design. It never writes to the System Management Controller, so it cannot change fan speeds or power settings." } },
+        { "@type": "Question", "name": "Is HexTherm safe? Does it collect data?",
+          "acceptedAnswer": { "@type": "Answer", "text": "HexTherm has no network entitlement, so it cannot connect to the internet. There is no telemetry, updater or account. It requests no camera, microphone, location, files or notification permissions." } },
+        { "@type": "Question", "name": "Why does macOS say HexTherm can't be opened?",
+          "acceptedAnswer": { "@type": "Answer", "text": "HexTherm is not yet notarized by Apple, so Gatekeeper warns on first launch. Right-click the app and choose Open, or run: xattr -dr com.apple.quarantine /Applications/HexTherm.app" } },
+        { "@type": "Question", "name": "Does HexTherm work on a fanless MacBook Air?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. It detects that there are no fans and shows temperatures only." } },
+        { "@type": "Question", "name": "Is HexTherm open source?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. HexTherm is free, closed-source software from Hex Modifications." } }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root { --bg:#0b0614; --ink:#f4f0ff; --muted:#b5a9d6; --purple:#9d66ff; --magenta:#ff57bd; --cyan:#5ce6ff; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; }
+  body::before { content:""; position:fixed; inset:0; z-index:-1;
+    background: radial-gradient(900px 500px at 12% -5%, rgba(157,102,255,.35), transparent 60%),
+                radial-gradient(800px 500px at 100% 100%, rgba(255,87,189,.22), transparent 60%); }
+  a { color: var(--cyan); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 22px; }
+  nav { display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
+  nav .brand { display:flex; align-items:center; gap:10px; font-weight:700; color:var(--ink); text-decoration:none; font-size:19px; }
+  nav .brand img { width:30px; height:30px; border-radius:7px; }
+  nav .links a { color:var(--muted); text-decoration:none; margin-left:22px; font-size:15px; }
+  nav .links a:hover { color:var(--ink); }
+  .hero { padding: 36px 0 18px; text-align:center; }
+  .hero h1 { font-size: clamp(34px, 6vw, 58px); line-height:1.08; margin:.2em 0 .3em; letter-spacing:-.02em; }
+  .hero h1 span { background: linear-gradient(90deg,var(--purple),var(--magenta),var(--cyan)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p.lead { color:var(--muted); font-size: clamp(18px,2.4vw,22px); max-width: 680px; margin: 0 auto 26px; }
+  .cta { display:inline-flex; align-items:center; gap:10px; padding:15px 28px; border-radius:999px; font-weight:700; font-size:18px; color:#0b0614; text-decoration:none;
+    background: linear-gradient(90deg,var(--cyan),#b99cff); box-shadow: 0 8px 40px rgba(124,92,255,.45); }
+  .cta:hover { filter: brightness(1.08); }
+  .sub { color:var(--muted); font-size:14px; margin-top:12px; }
+  .banner { margin: 34px auto 8px; border-radius: 22px; overflow:hidden; border:1px solid rgba(255,255,255,.12); box-shadow: 0 30px 90px rgba(123,70,255,.30); }
+  .banner img { display:block; width:100%; height:auto; }
+  section { padding: 54px 0 6px; }
+  h2 { font-size: clamp(26px,4vw,38px); letter-spacing:-.015em; margin:0 0 10px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(min(440px,100%),1fr)); gap:22px; margin-top:22px; }
+  .card { border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); border-radius:20px; overflow:hidden; }
+  .card img { display:block; width:100%; height:auto; }
+  .card .t { padding: 16px 18px 20px; }
+  .card h3 { margin:0 0 4px; font-size:19px; }
+  .card p { margin:0; color:var(--muted); font-size:15px; }
+  ol.steps { padding-left: 1.2em; } ol.steps li { margin: 8px 0; }
+  code { background: rgba(255,255,255,.08); padding: 2px 7px; border-radius:7px; font: 14px ui-monospace, SFMono-Regular, Menlo, monospace; color:#e8dcff; word-break: break-all; }
+  pre { background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); padding:14px 16px; border-radius:14px; overflow:auto; font: 14px ui-monospace, SFMono-Regular, Menlo, monospace; }
+  details { border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.035); border-radius:16px; padding: 4px 18px; margin: 10px 0; }
+  summary { cursor:pointer; font-weight:600; padding:12px 0; }
+  details p { margin: 0 0 14px; color:var(--muted); }
+  footer { margin-top: 64px; padding: 30px 0 50px; border-top:1px solid rgba(255,255,255,.1); color:var(--muted); font-size:14px; text-align:center; }
+  footer a { color: var(--muted); }
+  @media (max-width:640px){ nav .links a:not(:last-child){display:none;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="./"><img src="assets/favicon-64.png" alt="" width="30" height="30">HexTherm</a>
+    <div class="links"><a href="#features">Features</a><a href="#install">Install</a><a href="#faq">FAQ</a><a href="https://github.com/001Hex/HexTherm-Releases/releases/latest">Download</a></div>
+  </nav>
+
+  <header class="hero">
+    <h1>Your Mac's temperature, fans & heat warnings.<br><span>In the menu bar. Nowhere else.</span></h1>
+    <p class="lead">HexTherm is a free, quiet Mac menu bar app for CPU and GPU temperature, fan speed and overheating alerts. No dashboards, no accounts, no network.</p>
+    <a class="cta" id="dl" href="https://github.com/001Hex/HexTherm-Releases/releases/latest">⬇ Download for Mac</a>
+    <div class="sub" id="dlsub">Free · macOS 26+ · Apple Silicon &amp; Intel</div>
+    <div class="banner"><img src="assets/banner-hero.png" alt="HexTherm – Mac temperature, fans and heat warnings in the menu bar" width="2400" height="800"></div>
+  </header>
+
+  <section id="features">
+    <h2>Everything you need. Nothing you don't.</h2>
+    <p style="color:var(--muted);margin:0">Most Mac system monitors bury the one number you want. HexTherm shows temperature, fan speed and a heads-up when it matters.</p>
+    <div class="grid">
+      <div class="card"><img src="assets/feature-menubar.png" alt="Menu bar icon that changes colour from cyan to red as the Mac heats up" loading="lazy" width="1600" height="800"><div class="t"><h3>Lives in your menu bar</h3><p>A tiny icon and number that shifts from cyan to violet to magenta to red as your Mac heats up. Sits right beside the notch on MacBook Pro.</p></div></div>
+      <div class="card"><img src="assets/feature-glass.png" alt="Liquid Glass panel showing CPU and GPU temperature and fan speeds" loading="lazy" width="1600" height="800"><div class="t"><h3>A Liquid Glass panel</h3><p>Click for CPU and GPU average and peak, live fan RPM and a one-line sensor summary, in a panel that matches macOS 26.</p></div></div>
+      <div class="card"><img src="assets/feature-alerts.png" alt="Heat alert card dropping out of the menu bar icon" loading="lazy" width="1600" height="800"><div class="t"><h3>Alerts that drop from the icon</h3><p>When your Mac runs hot, a small card appears right under the icon. Once per event, never spammy, with one-tap snooze.</p></div></div>
+      <div class="card"><img src="assets/feature-private.png" alt="Read-only, fully offline, no permission prompts" loading="lazy" width="1600" height="800"><div class="t"><h3>Private by design</h3><p>Read-only sensor access, no network entitlement, no telemetry, no permission prompts. It reads temperatures and that's all.</p></div></div>
+    </div>
+    <p style="color:var(--muted);margin-top:22px">Also: °C/°F, adjustable refresh rate, your own warm / hot / critical thresholds, launch at login, an optional hover widget that hugs the notch, and graceful handling of fanless MacBook Air models.</p>
+  </section>
+
+  <section id="install">
+    <h2>Install in a minute</h2>
+    <ol class="steps">
+      <li><a href="https://github.com/001Hex/HexTherm-Releases/releases/latest">Download the latest <code>HexTherm-x.y.z.dmg</code></a> and open it.</li>
+      <li>Drag <strong>HexTherm</strong> onto <strong>Applications</strong>, then open it. A thermometer appears in your menu bar.</li>
+      <li>First launch: HexTherm isn't notarized by Apple yet, so macOS may warn. Right-click the app → <strong>Open</strong> → <strong>Open</strong>, or run:
+        <pre>xattr -dr com.apple.quarantine /Applications/HexTherm.app</pre></li>
+    </ol>
+    <p style="color:var(--muted)">Prefer Homebrew? <code>brew install --cask 001hex/tap/hextherm</code></p>
+  </section>
+
+  <section id="faq">
+    <h2>Questions</h2>
+    <details><summary>Does it work on M1, M2, M3, M4 and Intel Macs?</summary><p>Yes. It's a universal app and discovers your Mac's sensors at launch instead of relying on a fixed list. It was developed and tested on an M4 Max MacBook Pro; if a reading looks off on your model, please <a href="https://github.com/001Hex/HexTherm-Releases/issues">open an issue</a> with your Mac model.</p></details>
+    <details><summary>Can it control my fan speed?</summary><p>No. It's read-only by design. It never writes to the System Management Controller, so it can't change fan speeds or power settings.</p></details>
+    <details><summary>Is it safe? Does it collect any data?</summary><p>No data is collected. HexTherm has no network entitlement, so it can't connect to the internet at all. There's no telemetry, no updater and no account, and it asks for no camera, microphone, location, files or notification permissions.</p></details>
+    <details><summary>Why does macOS say it can't be opened?</summary><p>HexTherm isn't notarized by Apple yet (that requires a paid developer account), so Gatekeeper shows a warning on first launch. Right-click → Open, or run the <code>xattr</code> command above. You can verify your download against the SHA-256 on the release page.</p></details>
+    <details><summary>How is it different from iStat Menus, TG Pro or Macs Fan Control?</summary><p>Those are excellent and do more, including fan control and dozens of sensors. HexTherm deliberately does less: temperature, fan speed and heat warnings in one quiet menu bar item, free, offline and read-only.</p></details>
+    <details><summary>How accurate are the temperatures?</summary><p>HexTherm shows what your Mac's System Management Controller reports, the same source other Mac monitors use. It filters out placeholder and non-temperature values, and shows average and peak per category, since different sensors sit in different places on the chip.</p></details>
+    <details><summary>Does it work on a fanless MacBook Air?</summary><p>Yes. It detects there are no fans and shows temperatures only.</p></details>
+    <details><summary>Is it open source?</summary><p>No. HexTherm is free, closed-source software by Hex Modifications. See the <a href="https://github.com/001Hex/HexTherm-Releases/blob/main/EULA.txt">EULA</a>.</p></details>
+  </section>
+
+  <footer>
+    <p><a href="https://github.com/001Hex/HexTherm-Releases/releases/latest">Download</a> · <a href="https://github.com/001Hex/HexTherm-Releases/issues">Support</a> · <a href="https://github.com/001Hex/HexTherm-Releases/blob/main/EULA.txt">EULA</a></p>
+    <p>© 2026 Hex Modifications. HexTherm is not affiliated with or endorsed by Apple Inc. Mac, MacBook and macOS are trademarks of Apple Inc. Banner UI panels are illustrations.</p>
+  </footer>
+</div>
+<script>
+  // Show the current version on the button; falls back silently to the static text.
+  fetch("https://api.github.com/repos/001Hex/HexTherm-Releases/releases/latest")
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d || !d.tag_name) return;
+      document.getElementById("dl").textContent = "⬇ Download HexTherm " + d.tag_name.replace(/^v/, "");
+    }).catch(function () {});
+</script>
+</body>
+</html>

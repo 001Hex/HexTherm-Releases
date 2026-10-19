@@ -1,0 +1,8 @@
+name: Feature request
+description: Suggest something HexTherm should do
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes: { label: What would you like?, description: "HexTherm is deliberately small. Tell me the problem you're trying to solve." }
+    validations: { required: true }
