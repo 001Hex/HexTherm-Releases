@@ -1,0 +1,20 @@
+HexTherm — End User License Agreement
+
+Copyright (c) 2026 Hex Modifications. All rights reserved.
+
+HexTherm is licensed, not sold. Hex Modifications grants you a free, personal,
+non-exclusive, non-transferable license to install and use HexTherm on Macs you
+own or control.
+
+You may not: (a) copy or redistribute HexTherm except by sharing a link to the
+official download page; (b) modify, decompile, disassemble, or reverse engineer
+HexTherm, except where applicable law forbids this restriction; (c) remove
+copyright notices; (d) sell, rent, or sublicense HexTherm.
+
+HexTherm is provided "AS IS", without warranty of any kind. Temperature and fan
+readings come from your Mac's System Management Controller and are shown for
+information only; Hex Modifications is not liable for any damage, data loss, or
+hardware issue arising from use of, or reliance on, HexTherm.
+
+HexTherm does not collect, store, or transmit any personal data and does not
+connect to the internet.
