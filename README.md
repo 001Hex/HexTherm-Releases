@@ -30,7 +30,7 @@
 | <img src="docs/assets/feature-menubar.png" width="420" alt="Menu bar icon that changes colour with temperature"> | **Lives in your menu bar.** A tiny icon and number that shifts from cyan to violet to magenta to red as your Mac heats up. Sits right beside the notch on MacBook Pro. |
 | <img src="docs/assets/feature-glass.png" width="420" alt="Liquid Glass panel with CPU, GPU and fan data"> | **A Liquid Glass panel.** Click for CPU and GPU average and peak, live fan RPM and a one-line sensor summary, styled to match macOS 26. |
 | <img src="docs/assets/feature-alerts.png" width="420" alt="Heat alert dropping out of the menu bar icon"> | **Alerts that drop from the icon.** A small glass card appears right under the icon when your Mac runs hot. Once per event, never spammy, with one-tap snooze. |
-| <img src="docs/assets/feature-private.png" width="420" alt="Read-only, offline, no permissions"> | **Private by design.** Read-only sensor access, no network entitlement, no telemetry, no permission prompts. |
+| <img src="docs/assets/feature-private.png" width="420" alt="Read-only, offline, no permissions"> | **Private by design.** It only reads sensors. It makes no network connections and has no telemetry, updater, accounts or permission prompts. |
 
 Also: °C / °F, adjustable refresh rate, your own warm / hot / critical thresholds, launch at login, an optional hover widget that hugs the notch, and graceful handling of fanless MacBook Air models.
 
@@ -40,7 +40,7 @@ Also: °C / °F, adjustable refresh rate, your own warm / hot / critical thresho
 
 1. [Download the latest `HexTherm-x.y.z.dmg`](https://github.com/001Hex/HexTherm-Releases/releases/latest) and open it.
 2. Drag **HexTherm** onto **Applications**, then open it. A thermometer icon appears in your menu bar.
-3. **First launch:** HexTherm isn't notarized by Apple yet, so macOS may say it can't be opened. Right-click the app → **Open** → **Open**, or run:
+3. **First launch:** HexTherm isn't notarized by Apple yet, so macOS blocks it the first time. Open it once, then go to **System Settings → Privacy & Security**, scroll to **Security**, and click **Open Anyway** next to HexTherm (confirm with your password or Touch ID). Or skip that with one Terminal command:
 
 ```bash
 xattr -dr com.apple.quarantine /Applications/HexTherm.app
@@ -62,8 +62,8 @@ shasum -a 256 ~/Downloads/HexTherm-1.0.0.dmg
 
 ## Privacy and security
 
-- **Read-only.** HexTherm only reads sensors from the System Management Controller. It never writes to it and cannot change fan speeds or power settings.
-- **Offline.** No network entitlement, no connections, no telemetry, no updater, no accounts.
+- **Read-only.** HexTherm only reads sensors from the System Management Controller. It contains no code that writes to it, so it doesn't change fan speeds or power settings.
+- **No network use.** HexTherm makes no network connections and has no telemetry, updater or accounts. It isn't sandboxed, so macOS wouldn't stop it if it tried; don't just take our word for it, a free firewall such as [LuLu](https://objective-see.org/products/lulu.html) or Little Snitch will show it never connects.
 - **No permission prompts.** No camera, microphone, location, contacts, files, or notifications access.
 - **Hardened Runtime** is on. App Sandbox is off, because macOS doesn't let sandboxed apps read the SMC; the same is true of other Mac sensor tools.
 
@@ -76,7 +76,7 @@ Yes. It's a universal app and discovers your Mac's sensors at launch instead of 
 
 <details><summary><b>Can it control my fan speed?</b></summary>
 
-No. It's read-only by design and never writes to the SMC.
+No. It's read-only: it only reads sensors and has no code that changes fan speeds or power settings.
 </details>
 
 <details><summary><b>How is it different from iStat Menus, TG Pro or Macs Fan Control?</b></summary>

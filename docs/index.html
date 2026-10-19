@@ -50,11 +50,11 @@
         { "@type": "Question", "name": "Does HexTherm work on Apple Silicon (M1, M2, M3, M4) and Intel Macs?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is a universal app and discovers your Mac's sensors at launch instead of using a fixed list. It was developed and tested on an M4 Max MacBook Pro; if a sensor looks wrong on your model, please open an issue." } },
         { "@type": "Question", "name": "Can HexTherm control my fan speed?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No. HexTherm is read-only by design. It never writes to the System Management Controller, so it cannot change fan speeds or power settings." } },
+          "acceptedAnswer": { "@type": "Answer", "text": "No. HexTherm is read-only. It only reads sensors and contains no code that writes to the System Management Controller, so it does not change fan speeds or power settings." } },
         { "@type": "Question", "name": "Is HexTherm safe? Does it collect data?",
-          "acceptedAnswer": { "@type": "Answer", "text": "HexTherm has no network entitlement, so it cannot connect to the internet. There is no telemetry, updater or account. It requests no camera, microphone, location, files or notification permissions." } },
+          "acceptedAnswer": { "@type": "Answer", "text": "HexTherm makes no network connections and has no telemetry, updater or account. It is not sandboxed, so macOS would not block it from connecting; a free firewall such as LuLu or Little Snitch will show it never does. It requests no camera, microphone, location, files or notification permissions." } },
         { "@type": "Question", "name": "Why does macOS say HexTherm can't be opened?",
-          "acceptedAnswer": { "@type": "Answer", "text": "HexTherm is not yet notarized by Apple, so Gatekeeper warns on first launch. Right-click the app and choose Open, or run: xattr -dr com.apple.quarantine /Applications/HexTherm.app" } },
+          "acceptedAnswer": { "@type": "Answer", "text": "HexTherm is not yet notarized by Apple, so macOS blocks it the first time. Open it once, then go to System Settings, Privacy & Security, scroll to Security and click Open Anyway next to HexTherm. Or run: xattr -dr com.apple.quarantine /Applications/HexTherm.app" } },
         { "@type": "Question", "name": "Does HexTherm work on a fanless MacBook Air?",
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. It detects that there are no fans and shows temperatures only." } },
         { "@type": "Question", "name": "Is HexTherm open source?",
@@ -131,7 +131,7 @@
       <div class="card"><img src="assets/feature-menubar.png" alt="Menu bar icon that changes colour from cyan to red as the Mac heats up" loading="lazy" width="1600" height="800"><div class="t"><h3>Lives in your menu bar</h3><p>A tiny icon and number that shifts from cyan to violet to magenta to red as your Mac heats up. Sits right beside the notch on MacBook Pro.</p></div></div>
       <div class="card"><img src="assets/feature-glass.png" alt="Liquid Glass panel showing CPU and GPU temperature and fan speeds" loading="lazy" width="1600" height="800"><div class="t"><h3>A Liquid Glass panel</h3><p>Click for CPU and GPU average and peak, live fan RPM and a one-line sensor summary, in a panel that matches macOS 26.</p></div></div>
       <div class="card"><img src="assets/feature-alerts.png" alt="Heat alert card dropping out of the menu bar icon" loading="lazy" width="1600" height="800"><div class="t"><h3>Alerts that drop from the icon</h3><p>When your Mac runs hot, a small card appears right under the icon. Once per event, never spammy, with one-tap snooze.</p></div></div>
-      <div class="card"><img src="assets/feature-private.png" alt="Read-only, fully offline, no permission prompts" loading="lazy" width="1600" height="800"><div class="t"><h3>Private by design</h3><p>Read-only sensor access, no network entitlement, no telemetry, no permission prompts. It reads temperatures and that's all.</p></div></div>
+      <div class="card"><img src="assets/feature-private.png" alt="Read-only, fully offline, no permission prompts" loading="lazy" width="1600" height="800"><div class="t"><h3>Private by design</h3><p>It only reads sensors. No network connections, no telemetry, no permission prompts. It reads temperatures and that's all.</p></div></div>
     </div>
     <p style="color:var(--muted);margin-top:22px">Also: °C/°F, adjustable refresh rate, your own warm / hot / critical thresholds, launch at login, an optional hover widget that hugs the notch, and graceful handling of fanless MacBook Air models.</p>
   </section>
@@ -141,7 +141,7 @@
     <ol class="steps">
       <li><a href="https://github.com/001Hex/HexTherm-Releases/releases/latest">Download the latest <code>HexTherm-x.y.z.dmg</code></a> and open it.</li>
       <li>Drag <strong>HexTherm</strong> onto <strong>Applications</strong>, then open it. A thermometer appears in your menu bar.</li>
-      <li>First launch: HexTherm isn't notarized by Apple yet, so macOS may warn. Right-click the app → <strong>Open</strong> → <strong>Open</strong>, or run:
+      <li>First launch: HexTherm isn't notarized by Apple yet, so macOS blocks it the first time. Open it once, then go to <strong>System Settings → Privacy &amp; Security</strong>, scroll to <strong>Security</strong> and click <strong>Open Anyway</strong> next to HexTherm. Or run one Terminal command:
         <pre>xattr -dr com.apple.quarantine /Applications/HexTherm.app</pre></li>
     </ol>
     <p style="color:var(--muted)">Prefer Homebrew? <code>brew install --cask 001hex/tap/hextherm</code></p>
@@ -150,9 +150,9 @@
   <section id="faq">
     <h2>Questions</h2>
     <details><summary>Does it work on M1, M2, M3, M4 and Intel Macs?</summary><p>Yes. It's a universal app and discovers your Mac's sensors at launch instead of relying on a fixed list. It was developed and tested on an M4 Max MacBook Pro; if a reading looks off on your model, please <a href="https://github.com/001Hex/HexTherm-Releases/issues">open an issue</a> with your Mac model.</p></details>
-    <details><summary>Can it control my fan speed?</summary><p>No. It's read-only by design. It never writes to the System Management Controller, so it can't change fan speeds or power settings.</p></details>
-    <details><summary>Is it safe? Does it collect any data?</summary><p>No data is collected. HexTherm has no network entitlement, so it can't connect to the internet at all. There's no telemetry, no updater and no account, and it asks for no camera, microphone, location, files or notification permissions.</p></details>
-    <details><summary>Why does macOS say it can't be opened?</summary><p>HexTherm isn't notarized by Apple yet (that requires a paid developer account), so Gatekeeper shows a warning on first launch. Right-click → Open, or run the <code>xattr</code> command above. You can verify your download against the SHA-256 on the release page.</p></details>
+    <details><summary>Can it control my fan speed?</summary><p>No. It's read-only: it only reads sensors and has no code that changes fan speeds or power settings.</p></details>
+    <details><summary>Is it safe? Does it collect any data?</summary><p>No data is collected. HexTherm makes no network connections and has no telemetry, no updater and no account. It isn't sandboxed, so macOS wouldn't stop it from connecting if it tried; a free firewall like LuLu or Little Snitch will confirm it never does. It asks for no camera, microphone, location, files or notification permissions.</p></details>
+    <details><summary>Why does macOS say it can't be opened?</summary><p>HexTherm isn't notarized by Apple yet (that requires a paid developer account), so macOS blocks it the first time. Use System Settings → Privacy &amp; Security → Open Anyway, or run the <code>xattr</code> command above. You can verify your download against the SHA-256 on the release page.</p></details>
     <details><summary>How is it different from iStat Menus, TG Pro or Macs Fan Control?</summary><p>Those are excellent and do more, including fan control and dozens of sensors. HexTherm deliberately does less: temperature, fan speed and heat warnings in one quiet menu bar item, free, offline and read-only.</p></details>
     <details><summary>How accurate are the temperatures?</summary><p>HexTherm shows what your Mac's System Management Controller reports, the same source other Mac monitors use. It filters out placeholder and non-temperature values, and shows average and peak per category, since different sensors sit in different places on the chip.</p></details>
     <details><summary>Does it work on a fanless MacBook Air?</summary><p>Yes. It detects there are no fans and shows temperatures only.</p></details>
